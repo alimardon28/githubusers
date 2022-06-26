@@ -1,4 +1,5 @@
 const API_URL = "https://api.github.com/users/";
+// `https://api.github.com/users/${userData}/subscriptions`;
 
 const form = document.getElementById("form"),
   input = document.getElementById("input"),
@@ -11,7 +12,9 @@ const getUsers = async (username) => {
   uiCreate(user);
 };
 
-getUsers();
+(function () {
+  getUsers("alimardon28");
+})();
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -31,20 +34,30 @@ const uiCreate = (users) => {
   <div class="createUiCard">
       <div class="container createUiCard__container">
       <div class="createUiCard__left">
-            <img src=${users.avatar_url} class="createUiCard__left_img" alt="${users.name}" />
-           <h1 class="createUiCard__left_name">
-               ${users.name}
-           </h1>
-           <a class="createUiCard__left_link" href="${users.login}">@login</a>
-           <div class="createUiCard__left_box">
-
-           <span class="createUiCard__left_box_span">
-              followers ${users.followers}
-           </span>
-           <span class="createUiCard__left_box_span">
-               following ${users.following}
+             <img src=${users.avatar_url} class="createUiCard__left_img" alt="${users.name}" />
+             <h1 class="createUiCard__left_name">
+                ${users.name}
+             </h1>
+             <a href="#" class="createUiCard__left_link">${users.login}</a>
+            <p  class="createUiCard__left_bio">${users.bio}</p>
+            <button class="createUiCard__left_button ">Edit Profile</button>
+             <div class="createUiCard__left_box">
+                      <i class="bi bi-people-fill"></i>
+                   <span class="createUiCard__left_box_span">
+                   <span> ${users.followers}</span> followers
+                  </span>
+                  <span class="createUiCard__left_box_span">
+                  <span> ${users.following}</span> following
+                  </span>
+             </div>
+             <div class="createUiCard__left_div">
+             <span class="createUiCard__left_div_span"> <i class="bi bi-building"></i>
+             ${users.company}
+              </span>
+               <span class="createUiCard__left_div_span"> <i class="bi bi-geo-alt"></i>
+                ${users.location}
                </span>
-           </div>
+             </div>
       </div>
 
 
@@ -52,8 +65,11 @@ const uiCreate = (users) => {
       <div class="createUiCard__right">
 
         <div class="createUiCard__right_box">
-             <p>${users.public_repos}</p>
-             <p>${users.public_gists}</p>
+             <p class="createUiCard__right_elements"><i class="bi bi-book"></i> Owerview</p>
+             <p class="createUiCard__right_elements"><i class="bi bi-journal-bookmark-fill"></i> Repositories <span>${users.public_repos}</span></p>
+             <p class="createUiCard__right_elements"><i class="bi bi-window-sidebar"></i> Projects</p>
+             <p class="createUiCard__right_elements"><i class="bi bi-box"></i> Packeges</p>
+             <p class="createUiCard__right_elements"><i class="bi bi-star"></i> Stars  </p>
         </div>
 
 
