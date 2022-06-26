@@ -8,7 +8,6 @@ const form = document.getElementById("form"),
 const getUsers = async (username) => {
   const response = await fetch(API_URL + username);
   const user = await response.json();
-  console.log(user);
   uiCreate(user);
 };
 
@@ -27,6 +26,23 @@ form.addEventListener("submit", (e) => {
     input.value = "";
   }
 });
+
+const getSub = async (userData) => {
+  const res = await fetc(
+    `https://api.github.com/users/${userData}/subscriptions`
+  );
+  const subs = await res.json();
+  subsriptions(subs);
+
+};
+
+
+const subsriptions = (subs)=>{
+   console.log(subs);
+}
+
+subsriptions()
+
 
 const uiCreate = (users) => {
   const createUiCard = `
@@ -65,11 +81,25 @@ const uiCreate = (users) => {
       <div class="createUiCard__right">
 
         <div class="createUiCard__right_box">
-             <p class="createUiCard__right_elements"><i class="bi bi-book"></i> Owerview</p>
-             <p class="createUiCard__right_elements"><i class="bi bi-journal-bookmark-fill"></i> Repositories <span>${users.public_repos}</span></p>
-             <p class="createUiCard__right_elements"><i class="bi bi-window-sidebar"></i> Projects</p>
-             <p class="createUiCard__right_elements"><i class="bi bi-box"></i> Packeges</p>
-             <p class="createUiCard__right_elements"><i class="bi bi-star"></i> Stars  </p>
+             <div id="owerview" class="owerview">
+                  <span class="createUiCard__right_elements"><i class="bi bi-book"></i> Owerview</span>
+             </div>
+             <div id="repositories" class="repositories">
+                  <span class="createUiCard__right_elements"><i class="bi bi-journal-bookmark-fill"></i> Repositories <span>${users.public_repos}</span></span>
+             </div>
+             <div id="projects" class="projects">
+                  <span class="createUiCard__right_elements"><i class="bi bi-window-sidebar"></i> Projects</span>
+             </div>
+             <div id="packeges" class="packeges">
+                  <span class="createUiCard__right_elements"><i class="bi bi-box"></i> Packeges</span>
+             </div>
+             <div id="stars" class="stars">
+                  <span class="createUiCard__right_elements"><i class="bi bi-star"></i> Stars <span>4</span> </span>
+             </div>
+
+             <div>
+
+             </div>
         </div>
 
 
